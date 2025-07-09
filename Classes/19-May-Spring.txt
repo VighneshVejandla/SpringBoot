@@ -1,0 +1,16 @@
+spring security:-
+------------------
+
+spring core:- beans
+spring web:- web application        ---->
+spring data:-database connectivity   ---> JPARepository
+spring security:- to achieve security, 
+                  to make our rest endpoint secure,(so that only valid user can access it)
+                  spring security built in codes, according our needs we can customize it.
+
+spring cloud:- microservices
+
+====================================================================================
+
+InMemoryAuthentication:-
+-------------------------

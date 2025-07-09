@@ -1,0 +1,85 @@
+Spring Boot Microservices:-
+----------------------------
+
+Monolythic:-
+-------------
+ till what we have learn it is monolythic,
+
+monolythic--> developing the whole application feature in a single project. 
+
+   eg:-
+   ---- 
+      ecommerce  (flipkart)
+     -------------
+   features:-
+   ---------- 
+     login& register 
+     items 
+     filter 
+     cart 
+     whistlist 
+     payment 
+     orders 
+     address 
+     rewards 
+
+   disadv:-
+   ------- 
+     ->no one feature is failed , the whole application will not work.
+     -> no load balancing  --> (single port has to manage, payment request,order request,....) 
+     ->difficult to add new features, (stop and rebuilt). 
+     -> One technology and one database. 
+
+Microservices:-
+-------------
+   ->developing each service as a separate application.
+   ->eg:-
+    -----                                   backend technologies
+       login&register   ms-1 ----> 8081          java            mongodb
+       cart             ms-2 ----> 8082           node           mysql
+       order            ms-3 ----> 8083           java            mysql
+       payment          ms-4 ----> 8084           c#              oracle
+
+   -> we can achieve load balancing 
+   -> multiple technologies and database. 
+
+===============================================================================================
+how to achieve this:-
+---------------------- 
+ spring modules:-
+ --------------- 
+   1. spring core --> for beans & DI
+   2. spring web  --> for web app
+   3. spring data --> db
+   4. spring boot --> auto-configuration
+   5. spring security --> security the endpoints (authentication & authorization) 
+   6. spring cloud --> we can do microservices
+
+============================================================================================
+eureka server:-
+---------------- 
+   -> eureka server is a spring boot application, where all the microservices can register there.
+   -> It is a discovery server.
+
+steps to create eureka server:-
+------------------------------
+1. create a spring starter project 
+2. add eureka server dependencies 
+3. fill the properties fill 
+4. in main class annotate with @EnableEurekaServer
+=============================================
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+

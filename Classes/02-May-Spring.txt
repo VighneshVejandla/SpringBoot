@@ -1,0 +1,105 @@
+lombok
+logger
+sonarqube 
+
+spring boot
+
+==============================================================
+Lombok:-
+---------- 
+     It removes the boiler plate code for setter,getter,toString,constructor.
+
+
+just we need to add Lombok dependency in the pom.xml 
+
+  @Getter 
+  @Setter 
+  @ToString 
+  @Constructor. 
+  
+  @Data
+
+Note:-
+------ 
+   initiall Lombok dependency will not, we need to configure one time.
+
+=====================================================================
+
+logger:-
+----------- 
+    It is used to track the application activity.
+
+  sysout:- 
+
+
+sysout                             vs              logger 
+---------    
+1.add, remove difficult to manager            1. easily plug and play.
+2.no message priority                         2. we can set the log levels.
+3.only we can print in console                3. output can be displayed in console,file,db.
+===============================================================================================================================
+spring boot:-
+-------------- 
+
+spring:-
+---------
+ It makes java enterprise application development.
+ Rod Johnson --> founded the spring, 
+    spring modules:-
+    --------------- 
+       spring core --> beans configuration.
+       spring AOP  ---> do not mix business logic with non-business logic 
+       spring data  --> 
+       spring web  --> 
+       .. 
+       sprinb boot  -->  
+
+================================================================
+spring boot:-
+-------------- 
+    -> It is one of the module of spring framework. 
+    -> It remove boilerplate code from spring framework.
+    -> In spring boot it makes auto configuration.  
+                     database connection code, 
+                    for web application it will configure tomcat server. 
+    
+   ->Spring boot has starter parent dependency. (It load all the required dependency). 
+                                  
+  
+   Motto:-
+   ------- 
+      Do Not waste time on the configuration,Instead spring boot will do 
+      auto configuration.
+  
+==========================================================================
+spring               vs                spring boot
+==================================================================================
+                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

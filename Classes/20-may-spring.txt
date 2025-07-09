@@ -1,0 +1,18 @@
+DTO:-
+-----
+  Data Transfer Object.
+
+com.cts.entity     ----->It has information about table 
+                         audit column, 
+                        id  name   age   salary  password createdDate   updatedDate  isDeleted
+                                                                               1
+                                                                               0
+com.cts.repository  ----> Entity
+com.cts.service    ----> convert Entity to DTO  (or) DTO to Entity
+com.cts.controller  --->  DTO 
+
+=============================================================================================
+for Conversion:-
+-----------------
+1. manually we can convert  
+2. by using ModelMapper.

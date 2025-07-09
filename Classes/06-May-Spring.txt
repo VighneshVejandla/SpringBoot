@@ -1,0 +1,137 @@
+logger:-
+git:-
+orm:-
+--------
+  Object Relational Mapping.
+
+How to connect java application with data..?
+----------------------------------------------- 
+   JDBC :  Java Database connectivity.
+   -----
+        java code + sql code
+=====================================================
+
+ORM:-
+------
+    Object Relational Mapping. 
+    
+     Java --> object based 
+     sql  --> relational based
+     
+  how ORM will do mapping..?
+   ---------------------------
+
+class Employee   -----------> table name
+{
+ int id;         --------------> column name
+ String name;
+ String dept;
+
+}       
+
+Employee e1 = new Employee(1,'sachin','hr');  --> rows
+Employee e2 = new Employee(2,'manas','hr');  --> rows
+
+
+employee
+------------ 
+id     name       dept 
+1     sachin       hr
+2     manas        hr
+
+===========================================================
+Framework:-
+-------------- 
+    half built solution. 
+
+Some of the ORM framework:- (for java)
+-------------------------------
+    hibernate --> popular orm    (90%)   -->save(e1)
+    ibatis                                --> insert(e1)
+    toplink                                --> persist(e1)
+    ...........
+
+JPA:-
+------ 
+    JPA is the specification,which provide standarzition
+---------------------------- 
+ question:-
+----------- 
+    difference between JPA and Hibernate. 
+
+================================================================
+jdbc 
+ hibernate 
+   jpa with hibernate 
+       spring data JPA (It is top most layer, It provides abstraction 
+                         layer to database)
+                         in moder days, we use data jpa , to connect with 
+                          database.
+
+===============================================================
+steps:-
+----------
+1. create a spring starter project 
+      java 
+      maven 
+       com.cts 
+
+2. select the dependencies 
+     data jpa 
+     MySQL , postgres, oracle,.....  (any one based on database)         
+
+
+3. fill the application.properties file. 
+   ----------------------------------------
+   data jpa:- It will autoconfigure the database connection, at any cost 
+              we have to provide connection details.
+   
+
+spring.datasource.url=jdbc:mysql://localhost:3306/learning
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+
+4. create the package structure. 
+   --------------------------------
+    com.cts 
+          @SpringBootApplication (component scan) 
+    com.cts.entity   
+    com.cts.repository
+    com.cts.service 
+    com.cts.controller 
+    com.cts.exception 
+    com.cts.util 
+
+  
+    com.cts.entity    
+                    It is the model class, which a variable declaration 
+                    , default constructor , parameter constructor, 
+                     toString
+                     
+                     Annotation used in entity class: 
+                     ---------------------------------- 
+                       @Entity   ---> mandatory 
+                       @Id       ---> mandatory 
+                       @column 
+                       ..... 
+   
+    com.cts.repository  --> this package tells about, how to interact with 
+                           database
+                            This layer is complete abstraction, spring boot 
+                           at runtime, it will do the implementation.
+   
+    com.cts.service    --> business logic
+    
+    com.cts.controller  --> presentation,-> handle the request and response.
+   
+    com.cts.exception 
+    com.cts.util 
+
+  
+   
+
+
+
+

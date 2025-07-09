@@ -1,0 +1,81 @@
+spring data jpa:-
+-------------------
+Database mapping:-
+--------------------- 
+ 
+   one to one    -->  user                &     userdetail 
+                      id name pass        id   aadhar   pan   degree   userid
+   one to many 
+   many to one 
+   many to many
+
+
+
+=================================================
+spring modules:-
+------------------- 
+spring web   ----> for creating web application
+spring data  ----> for interacting with data 
+
+==================================================================
+a)spring mvc:
+-------------
+  modle        m-data (business logic)
+  view        v-frontend (presentation) --> jsp/theamleaf/
+  controller  c-handles the request and response.(handles the flow of the application).
+
+Controller:-
+-----------
+   In normal MVC, the controller is responsible for data + view layer.
+                            view(some jsp/ theamleaf).
+   
+   Note:-
+   -----
+     if we use spring mvc, then we need to aware of view technology
+
+
+b)spring Restful web service / Rest MVC:
+-----------------------------------------
+   In Rest mvc, the controller is not responsible for view, only it send data 
+ in the form json or xml.
+=======================================================================
+REST API:-
+------------- 
+Representation State Transfer. 
+
+->It was found by the same guy who founded http protocol, but rest is not a 
+protocol it is an architecture.
+
+->Roy Fielding is the guy who founded rest architecture and http protocol.
+
+By using REST api,we can able to interact with backend server.  
+    post -->  localhost/employee     --> add the  new employee
+    get  ---> localhost/employee     --> get all the employee
+    get --> localhost/employee/1 
+    put  --> localhost/employee 
+    delete --> 
+
+==========================================================================
+
+steps:-
+----------
+1. create spring starter project 
+
+2. add dependencies 
+     spring web 
+     data jpa 
+     MySQL dependencies
+
+3. create the package structure  
+   
+    com.cts 
+    com.cts.entity 
+    com.cts.repository 
+    com.cts.controller
+
+
+4.fill the properties of database 
+     
+   
+   
+   

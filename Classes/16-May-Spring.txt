@@ -1,0 +1,12 @@
+steps to do the validation:-
+-------------------------------
+
+1.use the Jakarta annotation in the entity class, 
+  @Min,Max,NotBlank,@NotNull,...... 
+
+
+2. use @Valid and @Validated in the controller class.
+
+Note:-
+------ 
+   when ever , any validation fails, It will throw MethodArgumentInvalidException.

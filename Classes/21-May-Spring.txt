@@ -1,0 +1,272 @@
+spring boot rest api, with one to one / and one to many:-
+---------------------------------------------------------
+
+
+Employee <---> Profile
+
+Employee <-->Dept
+
+=======================================================================
+Author and Book 
+---------------- 
+1  : M 
+
+=============================================================
+class Author 
+{
+   @Id
+   int id;
+   String name;
+   int experience;
+   int noOfBookPublish;
+  
+   @OneToMany(mapped="author", cascade=cascade.ALL)    -----> bi-directional
+   List<Book>  books;
+   
+}
+
+class Book 
+{
+  @Id
+  int id;
+  String name; 
+  String category; 
+  int noOfPages;
+
+  @ManytoOne
+  @JoinColumn(name="author_id")   ---> foreign key
+  Author author;
+
+
+}
+
+Author:
+-------------
+id  name     experience   noOfBookPublish 
+(p.k)
+
+
+
+Book:
+----------
+id    name    category    noOfPages    author_id
+(p.k)                                  (f.k)
+
+
+
+
+
+
+
+
+
+
+
+Sure! Here's the Spring Boot CRUD setup for a one-to-many bidirectional relationship between Author and Book, including a DTO layer to separate entity and request/response structures.
+
+Step 1: DTO Classes
+Author DTO
+java
+public class AuthorDto {
+    private Long id;
+    private String name;
+    private List<BookDto> bookDtos = new ArrayList<>();
+
+    // Getters and Setters
+}
+Book DTO
+java
+public class BookDto {
+    private Long id;
+    private String title;
+    private AuthorDto authorDto;
+
+    // Getters and Setters
+}
+Step 2: Entity Classes
+Author Entity
+java
+@Entity
+@Table(name = "authors")
+public class Author {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Book> books = new ArrayList<>();
+
+    // Getters and Setters
+}
+Book Entity
+java
+@Entity
+@Table(name = "books")
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = false)
+    private Author author;
+
+    // Getters and Setters
+}
+Step 3: Repository Interfaces
+java
+@Repository
+public interface AuthorRepository extends JpaRepository<Author, Long> {}
+
+@Repository
+public interface BookRepository extends JpaRepository<Book, Long> {}
+Step 4: Service Interface
+java
+public interface AuthorService {
+    AuthorDto saveAuthor(AuthorDto authorDto);
+    List<AuthorDto> getAllAuthors();
+    Optional<AuthorDto> getAuthorById(Long id);
+    AuthorDto updateAuthor(Long id, AuthorDto authorDto);
+    void deleteAuthor(Long id);
+}
+Step 5: Service Implementation
+java
+@Service
+public class AuthorServiceImpl implements AuthorService {
+
+    @Autowired
+    private AuthorRepository authorRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
+
+    @Override
+    public AuthorDto saveAuthor(AuthorDto authorDto) {
+        Author author = convertToEntityForAuthor(authorDto);
+
+        List<Book> books = authorDto.getBookDtos().stream()
+            .map(bookDto -> {
+                Book book = convertToEntityForBook(bookDto);
+                book.setAuthor(author);
+                return book;
+            })
+            .collect(Collectors.toList());
+
+        author.setBooks(books);
+
+        Author savedAuthor = authorRepository.save(author);
+        return convertToDtoForAuthor(savedAuthor);
+    }
+
+    @Override
+    public List<AuthorDto> getAllAuthors() {
+        return authorRepository.findAll().stream()
+            .map(this::convertToDtoForAuthor)
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<AuthorDto> getAuthorById(Long id) {
+        return authorRepository.findById(id).map(this::convertToDtoForAuthor);
+    }
+
+    @Override
+    public AuthorDto updateAuthor(Long id, AuthorDto authorDto) {
+        return authorRepository.findById(id).map(author -> {
+            author.setName(authorDto.getName());
+            Author updatedAuthor = authorRepository.save(author);
+            return convertToDtoForAuthor(updatedAuthor);
+        }).orElseThrow(() -> new RuntimeException("Author not found"));
+    }
+
+    @Override
+    public void deleteAuthor(Long id) {
+        authorRepository.deleteById(id);
+    }
+
+    private Author convertToEntityForAuthor(AuthorDto dto) {
+        Author author = new Author();
+        author.setId(dto.getId());
+        author.setName(dto.getName());
+        return author;
+    }
+
+    private Book convertToEntityForBook(BookDto dto) {
+        Book book = new Book();
+        book.setId(dto.getId());
+        book.setTitle(dto.getTitle());
+        return book;
+    }
+
+    private AuthorDto convertToDtoForAuthor(Author author) {
+        AuthorDto dto = new AuthorDto();
+        dto.setId(author.getId());
+        dto.setName(author.getName());
+
+        List<BookDto> bookDtos = author.getBooks().stream()
+            .map(book -> {
+                BookDto bookDto = new BookDto();
+                bookDto.setId(book.getId());
+                bookDto.setTitle(book.getTitle());
+                bookDto.setAuthorDto(dto);
+                return bookDto;
+            })
+            .collect(Collectors.toList());
+
+        dto.setBookDtos(bookDtos);
+        return dto;
+    }
+}
+Step 6: Controller Layer
+java
+@RestController
+@RequestMapping("/authors")
+public class AuthorController {
+
+    @Autowired
+    private AuthorService authorService;
+
+    @PostMapping
+    public ResponseEntity<AuthorDto> createAuthor(@RequestBody AuthorDto authorDto) {
+        return ResponseEntity.ok(authorService.saveAuthor(authorDto));
+    }
+
+    @GetMapping
+    public List<AuthorDto> getAllAuthors() {
+        return authorService.getAllAuthors();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AuthorDto> getAuthorById(@PathVariable Long id) {
+        return authorService.getAuthorById(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AuthorDto> updateAuthor(@PathVariable Long id, @RequestBody AuthorDto authorDto) {
+        return ResponseEntity.ok(authorService.updateAuthor(id, authorDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
+        authorService.deleteAuthor(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+Summary
+Bidirectional One-to-Many Relationship (Author → Book).
+
+DTO Layer for better separation between entities and API models.
+
+Service Layer with Interface for clean architecture.
+
+CRUD Operations with Repository, Service, and Controller.
+
+This gives a clean, scalable, and well-structured Spring Boot setup with DTOs! Let me know if you need refinements or explanations. 🚀

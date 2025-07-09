@@ -1,0 +1,156 @@
+Project:-
+---------- 
+ --> team collobration. 
+ --> project checklist 
+      1. microservice architecture --> api gateway, feign clinet, config server, fall back
+      2. jwt token (role based authentication) 
+      3. layered architecture (repository,service, controller) 
+      4. microservice communication 
+      5. logger  
+      6. validation 
+      7. unit testing 
+      8. readme 
+      9. comment --> above service methods
+
+=======================================================================================
+1.task:-  (groupwise) --> just small app
+---------
+  microservice architecture --> api gateway, feign clinet, config server, fall back
+
+===================================================================================
+Java recap:-
+------------- 
+  in java 2 types of methods:-
+  --------------------------- 
+   1. normal method --> It will body and implementation.
+                          eg:-
+                          --- 
+                             void disp() 
+                            {                 ---> body
+                              sop("hello");  // implementation
+                             }                 ---> hiding
+  
+  2. abstract method --> no body and no implementation detail.
+                        abstract void disp();   // hiding
+
+   
+  
+ in java we have 3 types of classes:- 
+ ----------------------------------  
+  1. normal                    2. abstract class                3. interface 
+  ------------------            ---------------------           ------------------
+  normal method                   normal + abstract                abstract   (jdk 1.7) 
+                                                                  
+                                                                abstract,default,static method  
+                                                                   (1.8)
+
+
+   no hiding                       partially hiding                fully hiding 
+                                      [0 to 100%]
+
+
+=========================================================================================
+
+  when to declare the method as abstract.
+  ---------------------------------------
+   we have method requirement , but donot know the implementation, the implementati
+on 
+   will decide by sub class.
+
+======================================================================================
+Overloading vs   Overriding:-
+--------------------------------
+========================================================================================
+Collection framework:-
+---------------------
+      It comes java.util package. 
+
+why we need collections, when we have array..? 
+------------------------------------------------ 
+
+collection                                vs                      array 
+----------------                                 -------------------------- 
+we can store heterogeneous                        homogeneous 
+objects 
+
+dynamic size (size can grow at                      fixed size
+ runtime)
+
+It has inbuilt data structure                      no inbuilt data structure 
+
+size wise collection is good                       performance wise array is good. 
+
+=============================================================================== 
+
+    Collection(I) ---> root interface 
+    | 
+    list   set    queue   (they are the child interface of collection)
+
+=======================================================================
+team wise microservice assignment:- simple application 
+----------------------------------- -------------------- 
+   eureka + api gateway + config server
+
+===================================================================
+Properties:-
+--------------- 
+  list:-             --------------> add,remove,addall,....
+  --------- 
+    1. allow duplicates 
+    2. maintains insertion order
+  
+  set:-           --------------> add,remove,addall,....
+  ----- 
+    1. It will not allow duplicate. 
+    2. order is not preserved, It will decide by sub class. 
+                   HashSet   ------> own order
+                   LinkedHashSet  --> insertion order
+                   TreeSet      ---> ascendin order
+
+   queue:-         --------------> add,remove,addall,....
+  ------ 
+       FIFO 
+    
+   Map:-            --------------> add,remove,addall,....
+   ---- 
+    Store key value pair 
+
+=========================================================================
+ collection methods:-
+ ------------------- 
+  add, remove, addAll, contains, 
+ 
+ Collections:- 
+ ---------------- 
+   sort, min,max,.....
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

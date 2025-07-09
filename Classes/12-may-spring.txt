@@ -1,0 +1,47 @@
+database mapping.
+------------------- 
+   one to one      ---> one row of this table will associate with one row of other table
+   one to many     --> one row associate with many row in other table. 
+   many to one 
+   many to many
+
+
+two types of mapping:-
+--------------------- 
+ 1. uni-directional 
+ 2. bi-directional
+
+======================================================================
+Employee                                EmployeeDetails  
+id name dept age salary empdetailsId     id   pan  aadhar   qualification   
+(pk)                        (f.k)        (pk)    
+
+
+Note:-
+------
+
+==========================================================================
+one to many:-
+-------------- 
+
+==============================================================================
+Server layer:-
+----------------- 
+   -> business logic.
+   -> Define interface, and then do the implementation.
+
+===============================================================================
+
+
+
+    
+
+
+
+
+
+
+
+
+
+

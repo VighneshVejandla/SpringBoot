@@ -1,0 +1,68 @@
+class InValidAgeException extends RunTimeException    ----> run time (unchecked)
+{
+
+}
+
+
+class InValidAgeException extends Exception    ----> compile (checked)
+{
+
+}
+====================================================================================
+core java--> main method
+
+spring boot ---> @SpringBootApplication 
+                       ComponentScan    ---> we need to specify the base package
+                       EnableAutoConfigured   
+
+=======================================================================
+
+com.cts 
+com.cts.entity       ---> Product
+
+com.cts.repository   ---> dao operation 
+                         create a interface extends JPARepository / CrudRepository 
+                        interface ProductRepository extends JPARepository{}
+
+com.cts.service    ----> to write the business logic 
+                       Define a Interface and then do the implementation
+                       interface  IProductSevice 
+                       {
+                             addProduct()
+                             viewAllProduct(),......
+                       }
+                        
+                       @Service   ----------------------------------------> It will configure the bean
+                       class ProductService implements IProductService 
+                       {
+                           @Autowire
+                          ProductRepository productRepository;
+                             
+                                @Override
+                                addProduct() 
+                               { 
+                                    // business logic
+                               }
+                       }
+
+com.cts.controller   ---> Presentation layer (handling request and response)
+                        
+                        @RestController    // @Controller + @ResponseBody
+                        class ProductController 
+                        {
+                           @Autowire
+                           IProductService productService;
+
+                          ResponseEntity<Product> addProduct()
+                          {
+                          }
+                        }
+
+
+========================================================================================
+Global Exception Handler:-
+------------------------- 
+  when ever any exception throw in any controller, @RestControllerAdvice will do cross cut functionality(AOP), 
+  and call the appropriate handler.
+
+

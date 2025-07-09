@@ -1,0 +1,59 @@
+Microservices communication:-
+-----------------------------
+  One service can access the data from other microservices services.
+   
+    3 ways we can achieve this:-
+    ---------------------------- 
+       1. Rest Template  ---> outdate
+       2. Feign Client   --->
+       3. web client     --->
+
+=======================================================================
+
+steps:-
+--------------
+1) in pom file add dependencies.
+
+dependencies:-
+--------------
+	<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
+
+
+2)add this annotation 
+  -----------------------
+@EnableFeignClients in main file  
+
+
+3)
+=========================================================================
+
+
+
+ProfileService:-
+-------------------- 
+  
+public String validateAge(@PathVariable int age)
+{
+    if(age<=18)
+       return "your are teenage";
+    else if(age>=18 && age<=50)
+       return "adult"
+    return "senior citizen"
+
+}       
+
+
+===============================================================
+product ---> ms1 
+user    ----> ms2 ,   ---> reterive , getall, getbyId
+
+
+
+
+
+
+

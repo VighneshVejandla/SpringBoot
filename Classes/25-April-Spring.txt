@@ -1,0 +1,27 @@
+loosely coupling:-
+---------------- 
+   easily we we have change the implementation.  
+
+   how to achieve..?
+   ------------------ 
+     By using interface. 
+
+==============================================================
+scanario:-
+----------- 
+   what is the logic for booking a tikcet. 
+
+
+=====================================================
+layer architecture in spring 
+
+dao/repository layer   ---> focus on data base logic (interact with database)
+service layer   ---> foucs on business logic
+controller/ presentation   -->  handle the request and response.
+
+========================================================
+
+
+
+service layer   ---> foucs on busin
+

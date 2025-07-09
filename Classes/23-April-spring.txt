@@ -1,0 +1,60 @@
+23-April 
+-------
+
+steps:-
+--------- 
+ 1. create a maven project 
+ 
+ 2. add the spring context dependency 
+
+ ===================================================
+
+ bean scope:-
+ --------------- 
+ 1. singleton --> It creates a single object
+ 2. prototype --> It create a new object every time
+
+ Note:-
+ ------- 
+    by default the scope is singleton. 
+ ===========================================================================   
+Autowiring:-
+ ------------
+ It will inject the object dependency automatically.
+
+ types:-
+ ------- 
+   1. autowire by name.--> variable name, and bean id should be same.
+   2. autowire by type. --> bean id can be different, but there should be  
+                             only one type of that bean.
+=====================================================================================
+setter injection --> <propert name=""  value="">
+constructor -->  <constructor-arg=""> 
+
+inject:-
+------- 
+   int, string, object, List 
+   try to inject list --> type
+
+======================================================================================
+Annotation based:-
+--------------------  
+   
+  @Component:-
+  ------------- 
+     It will configure the bean.  
+
+@Component   // bean id= employee
+class Employee
+{
+
+}      
+
+======================================================================
+xmlbased --> xml file is used for onfiguration 
+java based --> a seprate java file is there for configuration 
+               we need to annotation this with @configuration
+
+
+
+

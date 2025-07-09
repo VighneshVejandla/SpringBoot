@@ -1,0 +1,62 @@
+
+spring core:-
+-------------- 
+     xml   --------->
+     java based 
+     annotation 
+     beans scope 
+     IOC 
+     Dependency Injection. 
+=======================================
+
+spring with maven:-
+-------------------- 
+
+1. overview of maven..?
+2. pom.xml 
+3. local repository  
+   remote repository / centralised repository. 
+==================================================================
+junit, mockito, logger 
+=================================================================
+junit:-
+------
+   -> junit is a java based unit testing framework. 
+   -> testing each and every functionality, (each and every method).  
+
+-> developer  --> writes the code + (he will do unit testing)
+                  2+2=> 4
+                  2+2.2=> 4.2
+                  
+-> tester   --> black box, white box, stress, sanity,....
+
+=====================================================================
+
+database 
+  |
+ dao/repository  (database logic) [this is we can do mock]
+  |
+ service       (business logic)
+   
+
+
+junit & mockit --> 
+========================= 
+    steps:-
+---------
+1. maven project 
+   add --> Mockito junit Jupiter dependency 
+
+2. 
+
+
+
+
+
+
+  
+
+
+
+
+

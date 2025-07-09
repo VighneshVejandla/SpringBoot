@@ -1,0 +1,26 @@
+logger:-
+--------- 
+   ->It is used to log application activity, (It will capture the behavior). 
+     
+
+   sop           vs              logger 
+ -------------                  ----------- 
+ output will                  output will display in
+ dipsplay in                  console,file,database
+ console
+
+generic message               we can set the message priority 
+                               we can set the levels for the message. 
+
+if we don't want               It is plugaable, It can be easily on and off. 
+we need to comment the 
+code 
+   
+======================================================================================
+adding swagger in spring boot:-
+----------------------------
+1. add the dependency 
+
+2. add the url 
+======================================================================
+spring boot dev tools --> for live reloding
